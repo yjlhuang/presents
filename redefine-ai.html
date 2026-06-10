@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReDefine AI 重定義智能 — 重新定義重新定義</title>
+<style>
+:root{
+  --bg:#07060d;
+  --ink:#eceaf6;
+  --dim:#8e8aa8;
+  --g1:#7c3aed;--g2:#06b6d4;--g3:#f472b6;
+  --glass:rgba(255,255,255,.05);
+  --line:rgba(255,255,255,.10);
+}
+*{margin:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Inter","Noto Sans TC",system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.grad{background:linear-gradient(92deg,var(--g1),var(--g2) 50%,var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.blob{position:fixed;border-radius:50%;filter:blur(110px);opacity:.35;z-index:-1;animation:drift 18s ease-in-out infinite alternate}
+.b1{width:480px;height:480px;background:var(--g1);top:-120px;left:-120px}
+.b2{width:420px;height:420px;background:var(--g2);top:35%;right:-150px;animation-delay:-6s}
+.b3{width:380px;height:380px;background:var(--g3);bottom:-120px;left:25%;animation-delay:-12s}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.15)}}
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 5vw;background:rgba(7,6,13,.55);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:18px;letter-spacing:.5px}
+.logo span{font-weight:300;color:var(--dim)}
+nav a{color:var(--dim);text-decoration:none;font-size:14px;margin:0 12px;transition:.2s}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;border:none;cursor:pointer;font-family:inherit;font-size:15px;font-weight:600;color:#fff;padding:12px 26px;border-radius:999px;background:linear-gradient(92deg,var(--g1),var(--g2));box-shadow:0 0 24px rgba(124,58,237,.45);transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(6,182,212,.55)}
+.btn.ghost{background:var(--glass);border:1px solid var(--line);box-shadow:none}
+.hero{min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 6vw 40px}
+.pill{font-size:13px;color:var(--dim);border:1px solid var(--line);background:var(--glass);padding:6px 16px;border-radius:999px;margin-bottom:26px;backdrop-filter:blur(8px)}
+.pill b{color:#a5f3fc;font-weight:600}
+h1{font-size:clamp(40px,7.5vw,86px);line-height:1.08;font-weight:800;letter-spacing:-.02em;max-width:14em}
+.hero p{margin:26px auto 34px;max-width:34em;color:var(--dim);font-size:clamp(15px,1.6vw,19px)}
+.hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.tick{margin-top:30px;font-size:13px;color:var(--dim)}
+.tick b{color:var(--ink)}
+.logos{padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap}
+.logos .track{display:inline-block;animation:roll 24s linear infinite;color:var(--dim);font-weight:700;font-size:15px;letter-spacing:1px}
+.logos .track i{font-style:normal;margin:0 34px;opacity:.75}
+@keyframes roll{to{transform:translateX(-50%)}}
+section{padding:90px 6vw;max-width:1180px;margin:0 auto}
+.eyebrow{font-size:13px;letter-spacing:3px;color:#a5f3fc;text-transform:uppercase;margin-bottom:14px}
+h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.01em;margin-bottom:14px}
+.sub{color:var(--dim);max-width:38em;margin-bottom:46px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.stat{background:var(--glass);border:1px solid var(--line);border-radius:22px;padding:30px 26px;backdrop-filter:blur(10px)}
+.stat .n{font-size:44px;font-weight:800}
+.stat .l{color:var(--dim);font-size:14px;margin-top:4px}
+.fn{font-size:12px;color:var(--dim);margin-top:36px;line-height:1.9;opacity:.8}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:22px;padding:30px;backdrop-filter:blur(10px);transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:rgba(165,243,252,.35);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.card .ic{font-size:30px;margin-bottom:14px}
+.card h3{font-size:19px;margin-bottom:8px}
+.card p{color:var(--dim);font-size:14.5px}
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.chip{padding:10px 22px;border-radius:999px;border:1px solid var(--line);background:var(--glass);color:var(--ink);font-weight:600;backdrop-filter:blur(8px);animation:bob 5s ease-in-out infinite}
+.chip:nth-child(2n){animation-delay:-1.6s;color:#a5f3fc}
+.chip:nth-child(3n){animation-delay:-3.2s;color:#f9a8d4}
+@keyframes bob{50%{transform:translateY(-7px)}}
+.quote{background:var(--glass);border:1px solid var(--line);border-radius:22px;padding:30px;backdrop-filter:blur(10px)}
+.quote p{font-size:16px;margin-bottom:16px}
+.quote .who{color:var(--dim);font-size:13.5px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;align-items:stretch}
+.plan{position:relative;background:var(--glass);border:1px solid var(--line);border-radius:24px;padding:34px 28px;backdrop-filter:blur(10px);display:flex;flex-direction:column}
+.plan.hot{border:1px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(92deg,var(--g1),var(--g2),var(--g3)) border-box}
+.plan .tagx{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;background:linear-gradient(92deg,var(--g1),var(--g3));padding:5px 16px;border-radius:999px}
+.plan h3{font-size:20px}
+.price{font-size:38px;font-weight:800;margin:14px 0 2px}
+.price s{font-size:17px;color:var(--dim);font-weight:400;margin-right:8px}
+.per{color:var(--dim);font-size:13px;margin-bottom:20px}
+.plan ul{list-style:none;padding:0;margin:0 0 26px;color:var(--dim);font-size:14.5px;flex:1}
+.plan li{padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.07)}
+.plan li b{color:var(--ink);font-weight:600}
+.final{text-align:center}
+.final h2{font-size:clamp(32px,5vw,56px)}
+footer{border-top:1px solid var(--line);padding:40px 6vw;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;color:var(--dim);font-size:13px}
+footer a{color:var(--dim);text-decoration:none;margin-right:18px}
+footer a:hover{color:var(--ink)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+/* chatbot */
+.bot{position:fixed;right:22px;bottom:22px;z-index:60}
+.bot-btn{width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;font-size:24px;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 8px 30px rgba(124,58,237,.5);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 8px 44px rgba(6,182,212,.65)}}
+.bot-box{display:none;position:absolute;bottom:72px;right:0;width:286px;background:rgba(15,13,26,.92);border:1px solid var(--line);border-radius:18px;padding:18px;backdrop-filter:blur(16px)}
+.bot-box.open{display:block}
+.bot-box .m{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px;margin-bottom:12px}
+.bot-box button{width:100%;margin-top:8px;font-size:13px;padding:10px}
+/* modal + toast */
+.veil{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:70;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{background:rgba(18,15,32,.95);border:1px solid var(--line);border-radius:24px;max-width:430px;padding:34px;text-align:center}
+.modal h3{font-size:22px;margin-bottom:10px}
+.modal p{color:var(--dim);font-size:14.5px;margin-bottom:22px}
+.modal input{width:100%;padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:var(--glass);color:var(--ink);font-family:inherit;margin-bottom:14px}
+.tiny{display:block;margin-top:14px;font-size:11.5px;color:#55516e;background:none;border:none;cursor:pointer;width:100%;font-family:inherit}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(80px);background:rgba(18,15,32,.95);border:1px solid rgba(165,243,252,.4);color:var(--ink);padding:13px 22px;border-radius:999px;font-size:14px;z-index:90;opacity:0;transition:.35s;backdrop-filter:blur(12px);max-width:88vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+@media (max-width:640px){nav .links{display:none}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<nav>
+  <div class="logo">ReDefine<span> AI · 重定義智能</span></div>
+  <div class="links">
+    <a href="#vision">願景</a><a href="#power">能力</a><a href="#price">定價</a>
+  </div>
+  <button class="btn ghost wl" style="padding:9px 20px;font-size:14px">加入等候名單</button>
+</nav>
+
+<header class="hero">
+  <div class="pill">🎉 <b>A 輪融資完成</b> · 估值已超越營收的 ∞ 倍</div>
+  <h1>用 AI <span class="grad">賦能</span>你的 AI，<br>重新定義<span class="grad">重新定義</span></h1>
+  <p>我們不解決問題。我們在更高的維度上，將問題抽象為機會，將機會封裝為敘事，並將敘事交付給下一輪投資人。</p>
+  <div class="cta-row">
+    <button class="btn wl">免費開始 →</button>
+    <button class="btn ghost wl">觀看 2 秒產品演示</button>
+  </div>
+  <div class="tick">已有 <b>12,847</b> 位開發者加入等候名單 · 此數字僅供氛圍參考</div>
+</header>
+
+<div class="logos"><div class="track">
+  <i>FORBES*</i><i>TECHCRUNCH*</i><i>36KR*</i><i>數位時代*</i><i>WIRED*</i><i>YC（的部落格我們常看）</i><i>FORBES*</i><i>TECHCRUNCH*</i><i>36KR*</i><i>數位時代*</i><i>WIRED*</i><i>YC（的部落格我們常看）</i>
+</div></div>
+
+<section id="vision" class="reveal">
+  <div class="eyebrow">Impact · 數據會說話（我們替它寫稿）</div>
+  <h2>可量化的<span class="grad">顛覆性</span>成果</h2>
+  <div class="stats">
+    <div class="stat"><div class="n grad">10×</div><div class="l">效率提升¹</div></div>
+    <div class="stat"><div class="n grad">99.7%</div><div class="l">用戶滿意度²</div></div>
+    <div class="stat"><div class="n grad">∞</div><div class="l">應用可能性³</div></div>
+    <div class="stat"><div class="n grad">0</div><div class="l">已知競爭對手⁴</div></div>
+  </div>
+  <div class="fn">¹ 與完全不使用電腦相比。&nbsp;&nbsp;² 樣本數：3，含兩位共同創辦人。&nbsp;&nbsp;³ 該數字尚未經第三方審計。&nbsp;&nbsp;⁴ 我們重新定義了「競爭對手」一詞，使其不包含任何現存公司。</div>
+</section>
+
+<section id="power" class="reveal">
+  <div class="eyebrow">Capabilities · 全棧式賦能矩陣</div>
+  <h2>六大核心能力，構築<span class="grad">護城河</span></h2>
+  <p class="sub">每一項能力都經過精心命名。</p>
+  <div class="grid">
+    <div class="card"><div class="ic">🧠</div><h3>AI 驅動的 AI</h3><p>我們的 AI 使用 AI 來優化 AI 的 AI 體驗，實現真正的 AI 閉環。閉環之外還有一層閉環。</p></div>
+    <div class="card"><div class="ic">⚛️</div><h3>量子兼容架構</h3><p>在量子電腦普及之前，本項聲明在原理上無法被證偽。我們對此充滿信心。</p></div>
+    <div class="card"><div class="ic">⛓️</div><h3>區塊鏈就緒</h3><p>我們目前沒有使用區塊鏈，但保留了隨時宣布使用區塊鏈的戰略彈性。</p></div>
+    <div class="card"><div class="ic">🌐</div><h3>Web4 原生</h3><p>直接跳過 Web3，提前卡位下一個尚未被定義的風口。先發優勢，從定義開始。</p></div>
+    <div class="card"><div class="ic">🔒</div><h3>軍用級加密</h3><p>具體是哪一國的軍隊，基於安全考量恕不奉告。基於同樣考量，加密細節亦不奉告。</p></div>
+    <div class="card"><div class="ic">📈</div><h3>數據驅動決策</h3><p>我們的每一個決策都由數據驅動。這些數據主要用於驅動融資簡報第 14 頁。</p></div>
+  </div>
+</section>
+
+<section class="reveal" style="text-align:center">
+  <div class="eyebrow">Philosophy · 底層邏輯</div>
+  <h2>我們的<span class="grad">思想體系</span></h2>
+  <p class="sub" style="margin:0 auto 46px">以下詞彙均可在任意順序下組成完整句子。</p>
+  <div class="chips">
+    <span class="chip">賦能</span><span class="chip">生態</span><span class="chip">閉環</span><span class="chip">抓手</span><span class="chip">顆粒度</span><span class="chip">底層邏輯</span><span class="chip">降維打擊</span><span class="chip">飛輪效應</span><span class="chip">第二曲線</span><span class="chip">範式轉移</span><span class="chip">心智佔領</span><span class="chip">對齊顆粒度</span>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="eyebrow">Voices · 來自真實用戶*的聲音</div>
+  <h2>他們這樣說</h2>
+  <div class="grid" style="margin-top:40px">
+    <div class="quote"><p>「用了之後，我終於理解了什麼叫『不知道自己用了什麼』。」</p><div class="who">— 某新創 CTO（職稱經本人要求模糊處理）</div></div>
+    <div class="quote"><p>「我被禮貌地要求生成這段推薦語。」</p><div class="who">— 一位不願具名的大型語言模型</div></div>
+    <div class="quote"><p>「這個產品改變了我對『改變』的定義。」</p><div class="who">— 思想領袖 · LinkedIn 自我認證</div></div>
+  </div>
+  <div class="fn">* 「真實」一詞的定義詳見服務條款第 47 條。</div>
+</section>
+
+<section id="price" class="reveal">
+  <div class="eyebrow">Pricing · 透明定價</div>
+  <h2>選擇適合您的<span class="grad">賦能等級</span></h2>
+  <div class="plans" style="margin-top:46px">
+    <div class="plan">
+      <h3>探索版</h3>
+      <div class="price">NT$0</div><div class="per">/ 月 · 永久免費（暫定）</div>
+      <ul><li><b>✓</b> 可以登入</li><li><b>✓</b> 完整瀏覽升級提示</li><li><b>✓</b> 體驗等候的樂趣</li><li>✗ 其他功能</li></ul>
+      <button class="btn ghost wl">開始探索</button>
+    </div>
+    <div class="plan hot">
+      <div class="tagx">🔥 92% 的人選擇此方案⁵</div>
+      <h3>專業版</h3>
+      <div class="price"><s>NT$3,000</s>NT$2,999</div><div class="per">/ 月 · 限時優惠（長期有效）</div>
+      <ul><li><b>✓</b> 探索版全部功能</li><li><b>✓</b> 可以登出</li><li><b>✓</b> 移除 50% 的浮水印</li><li><b>✓</b> 等候名單優先排位權</li></ul>
+      <button class="btn wl">立即升級</button>
+    </div>
+    <div class="plan">
+      <h3>企業版</h3>
+      <div class="price">聯繫銷售</div><div class="per">價格將在通話第 40 分鐘揭曉</div>
+      <ul><li><b>✓</b> 銷售將聯繫您</li><li><b>✓</b> 持續地聯繫您</li><li><b>✓</b> 在您換手機號之後找到您</li><li><b>✓</b> 專屬成功經理（負責他的成功）</li></ul>
+      <button class="btn ghost wl">預約通話</button>
+    </div>
+  </div>
+  <div class="fn">⁵ 統計範圍：曾點擊此按鈕的人之中，點了這顆按鈕的比例。</div>
+</section>
+
+<section class="final reveal">
+  <h2>準備好被<span class="grad">賦能</span>了嗎？</h2>
+  <p class="sub" style="margin:18px auto 34px">加入等候名單，搶先體驗等候。</p>
+  <button class="btn wl" style="font-size:17px;padding:16px 38px">加入等候名單 →</button>
+</section>
+
+<footer>
+  <div>© 2025 ReDefine AI 重定義智能 · 我們重視您的隱私（在法律強制要求的範圍內）</div>
+  <div>
+    <a href="#" class="wl">隱私政策</a><a href="#" class="wl">服務條款（持續更新中，恕不另行通知）</a><a href="#" class="wl">加入我們</a>
+  </div>
+</footer>
+
+<div class="bot">
+  <div class="bot-box" id="botbox">
+    <div class="m">您好！我是由 AI 驅動的 AI 助手 ✨<br>請問您想加入等候名單嗎？</div>
+    <button class="btn wl" >想</button>
+    <button class="btn ghost wl">讓我考慮一下</button>
+  </div>
+  <button class="bot-btn" onclick="document.getElementById('botbox').classList.toggle('open')" aria-label="AI 助手">✨</button>
+</div>
+
+<div class="veil" id="veil">
+  <div class="modal">
+    <h3>📬 訂閱「思想領袖週報」</h3>
+    <p>每週一封，由 AI 為 AI 撰寫、再由 AI 摘要的深度洞察。閱讀即視為同意被洞察。</p>
+    <input type="email" placeholder="your@email.com（我們會好好利用它）">
+    <button class="btn wl" style="width:100%">立即訂閱，成為思想領袖</button>
+    <button class="tiny" onclick="document.getElementById('veil').style.display='none'">我不想成為思想領袖</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// 萬物皆等候名單
+let q = 12847;
+const toast = document.getElementById('toast');
+let tt;
+document.querySelectorAll('.wl').forEach(el=>{
+  el.addEventListener('click',e=>{
+    e.preventDefault();
+    q++;
+    toast.textContent = '✓ 已為您加入等候名單（目前排位：第 ' + q.toLocaleString() + ' 位）';
+    toast.classList.add('show');
+    clearTimeout(tt);
+    tt = setTimeout(()=>toast.classList.remove('show'),2600);
+    const v = document.getElementById('veil');
+    if(v) v.style.display='none';
+  });
+});
+// 滾動顯現：每一段內容都值得一次入場動畫
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
